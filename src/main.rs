@@ -9,8 +9,6 @@ fn new_device() -> Result<Device> {
 
 fn main() -> Result<()> {
     let device = new_device()?;
-            
-
     let api = Api::new().unwrap();
     let repo = api.model("bert-base-uncased".to_string());
 
@@ -18,8 +16,12 @@ fn main() -> Result<()> {
 
     let weights = candle_core::safetensors::load(weights, &device).unwrap();
 
-    let weight = weights.get("bert.encoder.layer.0.attention.self.query.weight").unwrap();
-    let bias = weights.get("bert.encoder.layer.0.attention.self.query.bias").unwrap();
+    let weight = weights
+        .get("bert.encoder.layer.0.attention.self.query.weight")
+        .unwrap();
+    let bias = weights
+        .get("bert.encoder.layer.0.attention.self.query.bias")
+        .unwrap();
 
     let linear = Linear::new(weight.clone(), Some(bias.clone()));
 

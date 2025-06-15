@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+anyhow = "1.0.98"
 candle-core = { git = "https://github.com/huggingface/candle.git", version = "0.9.1", features = ["metal"] }
 candle-nn = { git = "https://github.com/huggingface/candle.git", version = "0.9.1", features = ["metal"] }
 hf-hub = { version = "0.4.2", features = ["tokio"] }
+tokio = "1.45.1"

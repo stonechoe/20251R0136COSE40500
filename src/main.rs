@@ -2,9 +2,13 @@ use candle_core::{DType, Device, Result, Tensor};
 use candle_nn::{Linear, Module};
 use hf_hub::api::sync::Api;
 
+fn new_device() -> Result<Device> {
+    let device = Device::new_metal(0)?;
+    return Ok(device);
+}
+
 fn main() -> Result<()> {
-    // Use Device::new_cuda(0)?; to use the GPU.
-    let device = Device::Cpu;
+    let device = new_device()?;
             
 
     let api = Api::new().unwrap();
